@@ -68,11 +68,44 @@ Gemini Nano が出力したテキストから `判定色.*?([緑黄赤])` を正
 > **Note**: Gemini Nano がセットアップされていない環境でも、「👤 著者情報から判定」機能（ルールベース統計解析）はそのまま動作します。
 
 ---
-
 ## 🚀 インストール手順 (Load Unpacked)
 
 ビルド作業（npm build 等）は不要です。クローン後、そのまま Chrome に読み込ませて動作させることができます。
 
 1. 本リポジトリをクローンまたは ZIP 形式でダウンロードして解凍します。
-   ```bash
-   git clone [https://github.com/maru0122/note-builtin-ai-classifier.git](https://github.com/maru0122/note-builtin-ai-classifier.git)
+```bash
+git clone https://github.com/maru0122/note-builtin-ai-classifier.git
+
+```
+
+2. Chrome のアドレスバーに `chrome://extensions/` を入力して開きます。
+3. 右上の **「デベロッパーモード」** を ON にします。
+4. 左上の **「パッケージ化されていない拡張機能を読み込む」** をクリックし、本プロジェクトのフォルダ（`manifest.json` がある階層）を選択します。
+5. note（`(https://note.com/)`）の記事ページまたは著者トップページを開くと、自動的に判定ボタンが挿入されます。
+
+---
+
+## 📁 ディレクトリ構成
+
+```text
+├── manifest.json            # Manifest V3 定義ファイル
+├── background.js            # Service Worker: Gemini Nano 推論 & RSS/HTML 並行解析
+├── content.js               # Content Script: DOM 抽出, ボタン挿入, Markdown レンダラー
+├── styles/
+│   └── style.css            # 判定カード・ボタングループのスタイリング
+├── sidepanel/
+│   ├── sidepanel.html       # プロンプト設定 UI
+│   ├── sidepanel.css        # サイドパネル用スタイル
+│   └── sidepanel.js         # 設定保存 & chrome.storage.local 同期
+└── PROJECT_MAP.md           # 内部アーキテクチャ詳細仕様書
+
+```
+
+---
+
+## ⚠️ 免責事項 (Disclaimer)
+
+* 本プロジェクトは、Chrome Built-in AI（Prompt API）の実装検証および技術ポートフォリオを目的として公開された **Experimental（実験的）な PoC 実装** です。
+* Chrome 側の Prompt API の仕様変更やアップデートに伴い、設定方法や動作挙動が変わる可能性があります。
+* note の HTML 構造の変更により、データ抽出処理が正しく動作しなくなる場合があります。
+* 判定結果はアルゴリズムおよび AI による推論値であり、アカウントや記事の品質を絶対的に保証するものではありません。
