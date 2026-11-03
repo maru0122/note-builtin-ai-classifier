@@ -1,0 +1,161 @@
+#note-ai-judge-container {
+  margin: 14px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.note-ai-judge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.note-ai-judge-btn:hover {
+  opacity: 0.9;
+}
+
+.note-ai-judge-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.note-ai-result-card {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.note-ai-result-card.loading {
+  background-color: #f8fafc;
+  color: #64748b;
+  border-left: 4px solid #94a3b8;
+}
+
+.note-ai-result-card.error {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-left: 4px solid #ef4444;
+}
+
+/* 色判定対応クラス */
+.note-ai-result-card.card-green {
+  background-color: #f0fdf4;
+  border-left: 5px solid #10b981;
+}
+
+.note-ai-result-card.card-yellow {
+  background-color: #fffbeb;
+  border-left: 5px solid #f59e0b;
+}
+
+.note-ai-result-card.card-red {
+  background-color: #fef2f2;
+  border-left: 5px solid #ef4444;
+}
+
+.note-ai-result-card.card-unknown {
+  background-color: #f3f4f6;
+  border-left: 5px solid #6b7280;
+}
+
+.note-ai-result-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* 簡易Markdown用スタイル */
+.markdown-body {
+  color: #1f2937;
+}
+
+.markdown-body h2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 12px 0 8px;
+  color: #111827;
+}
+
+.markdown-body h3 {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 10px 0 6px;
+  color: #374151;
+  background: rgba(0,0,0,0.03);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.markdown-body ul {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  padding-left: 20px;
+}
+
+.markdown-body li {
+  margin-bottom: 4px;
+}
+
+.markdown-body strong {
+  color: #111827;
+}
+
+.note-ai-raw-details {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed #cbd5e1;
+  font-size: 11px;
+}
+
+.note-ai-raw-details summary {
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+}
+
+.note-ai-raw-details pre {
+  margin-top: 8px;
+  padding: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  color: #475569;
+}
+
+/* ボタングループ (横並び配置) */
+.note-ai-btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* 著者判定ボタン */
+.note-ai-judge-btn-author {
+  background: linear-gradient(135deg, #1e293b, #334155);
+}
+
+.note-ai-judge-btn-author:hover {
+  opacity: 0.9;
+}
+
+.note-ai-judge-btn-author:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}

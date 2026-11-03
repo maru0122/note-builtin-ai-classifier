@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>プロンプト設定</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="panel-container">
+    <header class="panel-header">
+      <h2>⚙️ プロンプト設定</h2>
+      <p class="panel-sub">Note判定用AI（Gemini Nano）に送信するプロンプトを調整できます。</p>
+    </header>
+
+    <main class="panel-body">
+      <section class="form-group">
+        <label for="system-prompt"><strong>システム指示 (System Role)</strong></label>
+        <span class="hint">AIの役割や出力ルールを指定します。</span>
+        <textarea id="system-prompt" rows="3"></textarea>
+      </section>
+
+      <section class="form-group">
+        <label for="user-prompt"><strong>ユーザープロンプト (User Template)</strong></label>
+        <span class="hint">記事本文が挿入される箇所に <code>{{articleData}}</code> を含めてください。</span>
+        <textarea id="user-prompt" rows="12"></textarea>
+      </section>
+
+      <div class="button-group">
+        <button id="btn-save" class="btn btn-primary">設定を保存</button>
+        <button id="btn-reset" class="btn btn-secondary">初期値に戻す</button>
+      </div>
+
+      <div id="status-message" class="status-message"></div>
+
+      <!-- メタプロンプトのアコーディオン追加 -->
+      <details class="meta-prompt-section">
+        <summary>💡 AIでプロンプトを自動作成する</summary>
+        <div class="meta-prompt-content">
+          <p>以下の指示書をコピーして ChatGPT や Claude 等に貼り付け、「作りたい判定内容」を伝えると、設定用プロンプトを自動生成してくれます。</p>
+          <button id="btn-copy-meta" class="btn btn-outline">📋 指示書をコピー</button>
+          
+          <textarea id="meta-prompt-text" readonly rows="8">あなたはChrome拡張機能「Note記事分析ツール」のプロンプトエンジニアです。
+ユーザーから「分析したい目的や判定基準」を受け取り、拡張機能のサイドバーにそのままコピペして使える【システム指示】と【ユーザープロンプト】を作成してください。
+
+---
+
+### 【拡張機能の仕様・厳守ルール】
+1. プレースホルダーの必須配置:
+   - ユーザープロンプト内の記事本文を差し込む場所に、必ず半角で {{articleData}} を記載してください。
+2. 色判定タグの必須出力:
+   - AIの回答の1行目には、必ず「【判定色】: [緑 / 黄 / 赤]」のいずれか1つのみを出力させるルールを含めてください。
+   - 分析目的に応じて「何が赤・黄・緑に該当するか」の基準をプロンプト内で明確に定義してください。
+3. 本文のMarkdownフォーマット:
+   - 色判定タグ以降の分析本文は、カード上で見やすくなるよう「## 見出し」「- 箇条書き」「**太字**」などのMarkdown形式で出力させる指示にしてください。
+4. 出力形式:
+   - サイドバーの入力欄に合わせて、「■ システム指示 (System Role)」と「■ ユーザープロンプト (User Template)」の2つのコードブロックで出力してください。
+
+---
+
+### 【ユーザー入力】
+分析の目的・判定したい内容:
+「ここに分析したい内容を記載（例: 記事がAIによって書かれたものかどうか判定したい 等）」
+
+---
+
+### 【出力フォーマット】
+以下の形式で出力してください。
+
+■ システム指示 (System Role)
+```text
+（AIの役割やペルソナ、簡潔な出力姿勢を1〜2文で記述）
+```
+
+■ ユーザープロンプト (User Template)
+```text
+（記事分析の指示文）
+
+## 判定基準（色の定義）
+- 【判定色: 赤】: （条件）
+- 【判定色: 黄】: （条件）
+- 【判定色: 緑】: （条件）
+
+## 出力フォーマット
+以下の構成で出力してください。
+
+【判定色】: [緑 / 黄 / 赤]
+## 分析結果
+- **判定理由**: ...
+- **記事の概要**: ...
+
+記事データ:
+{{articleData}}
+```</textarea>
+        </div>
+      </details>
+
+    </main>
+  </div>
+
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

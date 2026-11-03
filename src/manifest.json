@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Note Built-in AI Classifier",
+  "version": "3.8.0",
+  "description": "Chrome内蔵AI（Gemini Nano）による記事判定と、客観的データ分析（投稿頻度・相互フォロー・互助会）による著者判定を行う拡張機能です",
+  "permissions": [
+    "activeTab",
+    "sidePanel",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://note.com/*"
+  ],
+  "action": {
+    "default_title": "プロンプト設定を開く"
+  },
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://note.com/*"],
+      "js": ["content.js"],
+      "css": ["styles/style.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
